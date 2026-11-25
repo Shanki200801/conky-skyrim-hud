@@ -1,12 +1,12 @@
 # conky-skyrim-hud
 
-A Skyrim-style HUD widget for [conky](https://github.com/brndnmtthws/conky): big Cinzel clock, the date in the Tamrielic calendar, and Magicka / Health / Stamina bars for disk, CPU and RAM.
+A Skyrim-style HUD widget for [conky](https://github.com/brndnmtthws/conky): big Cinzel clock, the date in the Tamrielic calendar, and Magicka / Health / Stamina bars that drain as your disk, CPU and RAM fill up.
 
 ![screenshot](screenshot.png)
 
 - **Time** in Cinzel with a soft shadow and an ornamental divider
 - **Tamriel date**: *Tirdas, 24th of Sun's Dusk*, *4th Era 201*, plus the real date
-- **Bars**: Magicka = disk used, Health = CPU, Stamina = RAM
+- **Bars**: Magicka = free disk, Health = idle CPU, Stamina = free RAM. Full bars mean a healthy system; they drain under load, like in the game.
 - Drawn entirely with Lua + Cairo; no images. Updates every 2 s.
 
 ## Install

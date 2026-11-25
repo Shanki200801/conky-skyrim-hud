@@ -154,10 +154,10 @@ function conky_skyrim_hud()
   text_c(cr, string.upper(string.format('4th Era, %d   ·   %s',
          now.year - 1825, os.date('%A %d %B'))), cx, 132, DIM, 1, 2.2)
 
-  -- HUD bars
-  local cpu  = num(conky_parse('${cpu cpu0}'))
-  local ram  = num(conky_parse('${memperc}'))
-  local disk = num(conky_parse('${fs_used_perc /}'))
+  -- HUD bars: full = healthy, draining as resources get used (like the game)
+  local cpu  = 100 - num(conky_parse('${cpu cpu0}'))
+  local ram  = 100 - num(conky_parse('${memperc}'))
+  local disk = 100 - num(conky_parse('${fs_used_perc /}'))
 
   local by, bh, bw, gap = 166, 9, 104, 22
   local x1 = cx - bw * 1.5 - gap
@@ -168,9 +168,9 @@ function conky_skyrim_hud()
   hud_bar(cr, x3, by, bw, bh, ram,  BARS.stamina, 'right')
 
   font(cr, 'Jost', 10, false)
-  text_c(cr, string.format('DISK  %d%%', disk), x1 + bw / 2, by + bh + 20, DIM, 1, 1.6)
-  text_c(cr, string.format('CPU  %d%%',  cpu),  x2 + bw / 2, by + bh + 20, DIM, 1, 1.6)
-  text_c(cr, string.format('RAM  %d%%',  ram),  x3 + bw / 2, by + bh + 20, DIM, 1, 1.6)
+  text_c(cr, string.format('DISK  %d%% FREE', disk), x1 + bw / 2, by + bh + 20, DIM, 1, 1.6)
+  text_c(cr, string.format('CPU  %d%% IDLE',  cpu),  x2 + bw / 2, by + bh + 20, DIM, 1, 1.6)
+  text_c(cr, string.format('RAM  %d%% FREE',  ram),  x3 + bw / 2, by + bh + 20, DIM, 1, 1.6)
 
   cairo_destroy(cr)
   cairo_surface_destroy(cs)
